@@ -19,14 +19,28 @@ import "./styles/app.scss";
 import { renderMondrian } from './mondrian';
 
 
+// OLD clearChart for albers graph
+// function clearChart() {                                                         // removes all children nodes from all svg elements
+//     let allSvgs = document.querySelectorAll("[id^=rectangular]");
+//     allSvgs.forEach((svg) => {                                                  // svg ==  <svg>...</svg>
+//         while (svg.firstChild) {
+//             svg.removeChild(svg.firstChild);
+//         }
+//     });
+// }
 
+
+// NEW clearChart for mondrian graph
 function clearChart() {                                                         // removes all children nodes from all svg elements
-    let allSvgs = document.querySelectorAll("[id^=rectangular]");
-    allSvgs.forEach((svg) => {                                                  // svg ==  <svg>...</svg>
-        while (svg.firstChild) {
-            svg.removeChild(svg.firstChild);
-        }
-    });
+    let container = document.getElementById('mondrian');
+    let child = container.firstChild;
+    container.removeChild(child);
+
+    // allSvgs.forEach((svg) => {                                                  // svg ==  <svg>...</svg>
+    //     while (svg.firstChild) {
+    //         svg.removeChild(svg.firstChild);
+    //     }
+    // });
 }
 
 
