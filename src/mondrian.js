@@ -10,22 +10,27 @@
 //   .attr("style", "outline: thick solid black;");
 
 
-export function renderMondrian() {
+export function renderMondrian(data) {
   // Configure Settings
   const w = 500;
   const h = 360;
   const padding = 30;
   const colours = ['red', 'blue', 'yellow', 'white'];
-  const colour_prob = [0.15, 0.20, 0.15, 0.5];  			      // Probability of each color being chosen
+  const colour_prob = [0.15, 0.20, 0.15, 0.5];  			        // Probability of each color being chosen
 
   // cumulative colour probabilities
   let colour_cum_prob = [];
   colour_prob.reduce(function (a, b, i) { return colour_cum_prob[i] = a + b; }, 0);
 
-  const tol = 100;  		                                    // height/width tolerance on which to split
+  const tol = 100;  		                                      // height/width tolerance on which to split
 
-  // FOR TESTING
-  const fractions = [0.60, 0.23, 0.15, 0.10, 0.08];		      // HARD CODED FOR TESTING
+  // FOR TESTING*************************
+  // const fractions = [0.60, 0.23, 0.15, 0.10, 0.08];		    // HARD CODED FOR TESTING (general electric)
+  // FOR TESTING*************************
+
+  let fractions = Object.values(data);                        // get values of data object as an array
+  fractions.pop();                                            // remove ROE from array
+  // debugger
 
   let svg = d3.select("#mondrian")
     .append("svg")
