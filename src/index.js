@@ -16,6 +16,7 @@ import { autocompleteSearchBar } from './search_stock';
 import { TICKERS } from './stock_tickers_full';
 import "./styles/app.scss";
 
+import { renderMondrian } from './mondrian';
 
 
 
@@ -44,7 +45,8 @@ function handleStockGet(e) {                                                    
             hideLoading();
             if (isValid(response, stockSymbol)) {
                 let data = parseStockData(response);                            // data = { leverage: 0.463933027478709, assetTurnover: 0.4002680756696468, operatingMargin: -0.00525464861268168, interestBurden: -0.03337927195044271, taxBurden: 0.17443281741476854, …}
-                renderAlbers(data);
+                // renderAlbers(data);
+                renderMondrian();
                 displaySection2(data);                                          // render section 2 on DOM
             } else {
                 displayStockNotFound();
@@ -80,8 +82,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-
-
+// Cut from index.html
+// < svg id = "rectangularareachart1" width = "400" height = "240" ></svg >< !-- --> <svg id="rectangularareachart2" width="400" height="240"></svg> <!-- -->
+//     <svg id="rectangularareachart3" width="400" height="240"></svg> <!-- --> <svg id="rectangularareachart4" width="400" height="240"></svg> <!-- -->
 
 
 
