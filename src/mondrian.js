@@ -2,12 +2,7 @@
 // https://www.christopherlovell.co.uk/blog/2017/09/03/mondrian-generator.html
 
 
-
-// let svg = d3.select("#mondrian")
-//   .append("svg")
-//   .attr("width", w)
-//   .attr("height", h)
-//   .attr("style", "outline: thick solid black;");
+const COLORS = ['red', 'blue', 'white', 'grey', 'yellow'];
 
 // data == object
 export function renderMondrian(data) {
@@ -15,12 +10,11 @@ export function renderMondrian(data) {
   const w = 500;
   const h = 360;
   const padding = 30;
-  const colours = ['red', 'blue', 'white', 'grey', 'yellow'];
-  const colour_prob = [0.15, 0.20, 0.15, 0.5];  			        // Probability of each color being chosen
+  // const colour_prob = [0.15, 0.20, 0.15, 0.5];  			        // Probability of each color being chosen
 
-  // cumulative colour probabilities
-  let colour_cum_prob = [];
-  colour_prob.reduce(function (a, b, i) { return colour_cum_prob[i] = a + b; }, 0);
+  // Cumulative colour probabilities
+  // let colour_cum_prob = [];
+  // colour_prob.reduce(function (a, b, i) { return colour_cum_prob[i] = a + b; }, 0);
 
   const tol = 100;  		                                      // height/width tolerance on which to split
 
@@ -41,7 +35,7 @@ export function renderMondrian(data) {
     .attr("height", h)
     .attr("style", "outline: thick solid black;");
 
-  // initialize array with 1 rectangle (the outermost/container)
+  // Initialize array with 1 rectangle (the outermost/container)
   let rectangles = [{ "x": 0, "y": 0, "width": w, "height": h }]
 
   // n == 5
@@ -100,6 +94,8 @@ export function renderMondrian(data) {
     // debugger
   }
 
+  // remove Old Tooltips (if there are any)
+  removeToolTips();
   
   // Sort rectangle array by area descending
   rectangles = sortRectangles(rectangles);
@@ -113,16 +109,6 @@ export function renderMondrian(data) {
     // let colourIndex = colour_cum_prob.findIndex(function (elem) { return elem > condition });
     // debugger
     
-    // WORKS- but no tooltip on hover
-    // svg.append("rect")
-    //   .attr("x", rectangles[i]['x'])
-    //   .attr("y", rectangles[i]['y'])
-    //   .attr("width", rectangles[i]['width'])
-    //   .attr("height", rectangles[i]['height'])
-    //   .attr("fill", colours[colourIndex])
-    //   .attr("stroke-width", 6)
-    //   .attr("stroke", "black")
-    //   .attr("id", cssLabels[i])
 
     // FROM http://bl.ocks.org/biovisualize/1016860
     // Append div element (tooltip) to body
@@ -132,15 +118,15 @@ export function renderMondrian(data) {
       .style("z-index", "10")
       .style("visibility", "hidden")
       .text(labels[i])
+      .attr("class", "tooltip")
 
-    // append rectangle element to svg element
+    // Append rectangle element to svg element
     svg.append("rect")
       .attr("x", rectangles[i]['x'])
       .attr("y", rectangles[i]['y'])
       .attr("width", rectangles[i]['width'])
       .attr("height", rectangles[i]['height'])
-      // .attr("fill", colours[colourIndex])
-      .attr("fill", colours[i])
+      .attr("fill", COLORS[i])
       .attr("stroke-width", 6)
       .attr("stroke", "black")
       // .attr("id", cssLabels[i])
@@ -151,7 +137,8 @@ export function renderMondrian(data) {
       // debugger
   }
 
-  
+  // Render legend
+  renderLegend(fractions, labels);
 }
 
 
@@ -168,7 +155,7 @@ function sortRectangles(rectangles) {
 
 
 
-// sorts array of label strings in descending order by data
+// Sorts array of label strings in descending order by data
 function sortLabels(labels, data) {
   // data   = [ 0.22, 0.10, 0.60, 0.08, 0.15 ];	
   // labels = [ "leverage", "asset turnover", "operating margin", "interest burden", "tax burden" ];
@@ -193,3 +180,98 @@ function sortLabels(labels, data) {
   return newLabelArr;
 }
 
+
+
+function removeToolTips() {
+  // grab all div elements with class "tooltip"
+  let divs = document.getElementsByClassName("tooltip");
+
+  // if the divs exist, remove all of them
+  if (divs) {
+    while (divs.length > 0) {
+      divs[0].parentNode.removeChild(divs[0]);
+    }
+  } 
+}
+
+
+
+// Render legend div
+function renderLegend(ratios, labels) {
+  // ex. labels = ["operating margin", "leverage", "tax burden", "asset turnover", "interest burden"]
+  // ex. rectangles = [
+  //   { x: 153.48240344129945, y: 30.378795562490996, width: 346.5175965587006, height: 329.621204437509, area: 114219.5475364697 },
+  //   { x: 0, y: 0, width: 69.04174259307369, height: 360, area: 24855.02733350653 },
+  //   { x: 69.04174259307369, y: 0, width: 45.63407903708125, height: 360, area: 16428.26845334925 },
+  //   { x: 114.67582163015494, y: 0, width: 38.80658181114451, height: 360, area: 13970.369452012024 },
+  //   { x: 153.48240344129945, y: 0, width: 346.5175965587006, height: 30.378795562490996, area: 10526.787224662497 },
+  // ]
+
+  // Sort ratios descending, and only display two decimal points
+  ratios = ratios.sort( (a, b) => b - a).map( (num => {
+    return num.toFixed(2);
+  }))
+
+  // grab div in section 3 of body (id=mondrian)
+  let container = document.getElementById("mondrian");
+  // <div id="section-3">
+  //   <div id="mondrian">
+  //     <svg></svg>
+  //    INSERT HERE
+  //   </div>
+  // </div>
+
+  // https://www.w3schools.com/jsref/met_table_insertrow.asp
+  // create div legend
+  let table = document.createElement("TABLE");
+  let row1 = table.insertRow(0);
+  let row2 = table.insertRow(1);
+
+  let cell1 = row1.insertCell(0);
+  let cell2 = row1.insertCell(1);
+  cell1.innerHTML = "Ratio";
+  cell2.innerHTML = "%";
+
+  let cell3 = row2.insertCell(0);
+  let cell4 = row2.insertCell(1);
+  cell3.innerHTML = labels[0];
+  cell4.innerHTML = ratios[0];
+
+  // <table>
+  //   <tr>
+  //     <th>Ratio</th>
+  //     <th>%</th>
+  //     <th>Color</th>
+  //   </tr>
+  //   <tr>
+  //     <td>Operating Margin</td>
+  //     <td>.20</td>
+  //     <td>Red</td>
+  //   </tr>
+  //   <tr>
+  //     <td>Leverage</td>
+  //     <td>.20</td>
+  //     <td>Red</td>
+  //   </tr>
+  //   <tr>
+  //     <td>Asset Turnover</td>
+  //     <td>.20</td>
+  //     <td>Red</td>
+  //   </tr>
+  //   <tr>
+  //     <td>Interest Burden</td>
+  //     <td>.20</td>
+  //     <td>Red</td>
+  //   </tr>
+  //   <tr>
+  //     <td>Tax Burden</td>
+  //     <td>.20</td>
+  //     <td>Red</td>
+  //   </tr>
+  // </table>
+
+
+  // Append div legend to mondrian div
+  container.appendChild(table);
+  // debugger
+}
