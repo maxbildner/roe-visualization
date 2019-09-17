@@ -35,12 +35,6 @@ function clearChart() {                                                         
     let container = document.getElementById('mondrian');
     let child = container.firstChild;
     container.removeChild(child);
-
-    // allSvgs.forEach((svg) => {                                                  // svg ==  <svg>...</svg>
-    //     while (svg.firstChild) {
-    //         svg.removeChild(svg.firstChild);
-    //     }
-    // });
 }
 
 

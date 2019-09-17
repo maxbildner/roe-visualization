@@ -30,8 +30,10 @@ export function renderMondrian(data) {
 
   let fractions = Object.values(data);                        // get values of data object as an array
   fractions.pop();                                            // remove ROE from array
+  const labels = [ "leverage", "asset turnover", "operating margin", "interest burden", "tax burden" ];
+  const cssLabels = [ "leverage", "asset-turnover", "operating-margin", "interest-burden", "tax-burden" ];
   // debugger
-
+  
   let svg = d3.select("#mondrian")
     .append("svg")
     .attr("width", w)
@@ -80,11 +82,34 @@ export function renderMondrian(data) {
   }
 
   // Render Rectangles
-  for (let i = 0; i < rectangles.length; i++) {
+  for (var i = 0; i < rectangles.length; i++) {
 
     let condition = Math.random()
     let colourIndex = colour_cum_prob.findIndex(function (elem) { return elem > condition });
 
+    // WORKS- but no tooltip on hover
+    // svg.append("rect")
+    //   .attr("x", rectangles[i]['x'])
+    //   .attr("y", rectangles[i]['y'])
+    //   .attr("width", rectangles[i]['width'])
+    //   .attr("height", rectangles[i]['height'])
+    //   .attr("fill", colours[colourIndex])
+    //   .attr("stroke-width", 6)
+    //   .attr("stroke", "black")
+    //   .attr("id", cssLabels[i])
+
+
+    // FROM http://bl.ocks.org/biovisualize/1016860
+    // Append div element (tooltip) to body
+    // var tooltip = d3.select(`#${cssLabels[i]}`)
+    let tooltip = d3.select(`body`)
+      .append("div")
+      .style("position", "absolute")
+      .style("z-index", "10")
+      .style("visibility", "hidden")
+      .text(labels[i])
+
+    // append rectangle element to svg element
     svg.append("rect")
       .attr("x", rectangles[i]['x'])
       .attr("y", rectangles[i]['y'])
@@ -92,11 +117,36 @@ export function renderMondrian(data) {
       .attr("height", rectangles[i]['height'])
       .attr("fill", colours[colourIndex])
       .attr("stroke-width", 6)
-      .attr("stroke", "black");
+      .attr("stroke", "black")
+      .attr("id", cssLabels[i])
+      .on("mouseover", function () { return tooltip.style("visibility", "visible"); })
+      .on("mousemove", function () { return tooltip.style("top", (event.pageY - 10) + "px").style("left", (event.pageX + 10) + "px"); })
+      .on("mouseout", function () { return tooltip.style("visibility", "hidden"); });
+
+    // <div class="example_div">
+    //   <svg class="sample">
+    //     <circle></circle>
+    //   </svg>
+    // </div>
+
+    // <div>Tooltip Text</div>
+  
+    
+    // DOESN'T WORK
+    // svg.append('text')
+    //   .attr("class", "mondrian-text-labels")
+    //   .style("fill", "grey")
+    //   .style("font-size", "18px")
+    //   .attr("dy", ".35em")
+    //   .attr("x", rectangles[i]['x'])
+    //   .attr("y", rectangles[i]['y'])
+    //   .style("style", "label")
+    //   .text(() => {
+    //     // debugger
+    //     return labels[i];
+    //   });
   }
 }
-
-// renderMondrian();
 
 
 
