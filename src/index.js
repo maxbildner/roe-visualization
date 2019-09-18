@@ -81,14 +81,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // when user clicks on input field, remove stockNotFound element (if exists)
     stockSymbolEl.addEventListener('click', removeStockNotFound);
 
-    stockSymbolEl.addEventListener('keydown', event => {
-        // debugger
-        if (event.keyCode === 13) {
-            // debugger
-            getStockbtnEl.click();
-            // handleStockGet();                    // Call handleStockGet when user Clicks 'LOOKUP' Button
-        }
-    }); 
+    // stockSymbolEl.addEventListener('keydown', event => {
+    //     // debugger
+    //     if (event.keyCode === 13) {
+    //         // debugger
+    //         getStockbtnEl.click();
+    //         // handleStockGet();                    // Call handleStockGet when user Clicks 'LOOKUP' Button
+    //     }
+    // }); 
 
     // autocompleteSearchBar(stockSymbolEl, STOCK_SAMPLE_TICKERS);
     autocompleteSearchBar(stockSymbolEl, TICKERS);

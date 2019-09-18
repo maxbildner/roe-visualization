@@ -79,6 +79,7 @@ export function autocompleteSearchBar(stockSymbolEl, STOCK_TICKERS) {
 					getStockbtnEl.click();
 					closeDropDownList();
 				});
+				
 
 				// debugger
 				// stop appending if list container becomes too long
@@ -108,11 +109,29 @@ export function autocompleteSearchBar(stockSymbolEl, STOCK_TICKERS) {
 			currentSelection--;
 			addActiveClass(dropDownList);
 		} else if (e.keyCode == 13) {   // ENTER key
+			// debugger
+			// grab submit button
+			const getStockbtnEl = document.getElementById('get-stock');								
+		
 			if (currentSelection > -1) {	// if user is browsing through choices with arrow key
-					// debugger
-					// When user hits enter, simulate a "click" on that ticker
-					if (dropDownList) dropDownList[currentSelection].click();
-				}
+				// debugger
+				// When user hits enter, simulate a "click" on that ticker
+				// if (dropDownList) dropDownList[currentSelection].click();		// DOESN'T WORK?!
+				
+				// grab ticker of current selection (blue div)
+				let selected = document.getElementsByClassName("autocomplete-active")[0];
+				let tickerSelected = selected.children[2].value;
+
+				// grab input field element
+				let inputField = document.getElementById("stock-symbol");
+
+				// change input field to tickerSelected
+				inputField.value = tickerSelected;
+			}
+			
+			// simulate clicking submit button
+			getStockbtnEl.click();
+			closeDropDownList();
 		}
 	});
 
