@@ -1829,6 +1829,26 @@ export const displaySection2 =  (stockData) => {
     // Create new child div
     let displayDiv = document.createElement("DIV");
 
+    // Format string largestRatio into space separated string
+    // ex. 
+    switch (largestRatio) {
+        case "leverage":
+            largestRatio = "Leverage";
+            break;
+        case "assetTurnover":
+            largestRatio = "Asset Turnover";
+            break;
+        case "operatingMargin":
+            largestRatio = "Operating Margin";
+            break;
+        case "interestBurden":
+            largestRatio = "Interest Burden";
+            break;
+        case "taxBurden":
+            largestRatio = "Tax Burden";
+    }
+    
+    
     // Make inner HTML content of child div
     displayDiv.innerHTML = text + increaseOrDecrease + " in " + largestRatio;
     displayDiv.className = "roe-cause";
