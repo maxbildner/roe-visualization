@@ -241,6 +241,9 @@ function renderLegend(ratios, labels) {
   let row1Cell1 = row1.insertCell(0);
   let row1Cell2 = row1.insertCell(1);
   let row1Cell3 = row1.insertCell(2);
+  row1Cell1.setAttribute("class", "ratio");
+  row1Cell2.setAttribute("class", "percent");
+  row1Cell3.setAttribute("class", "color");
   row1Cell1.innerHTML = "Ratio";
   row1Cell2.innerHTML = "%";
   row1Cell3.innerHTML = "Color";

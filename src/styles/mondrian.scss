@@ -5,6 +5,8 @@
 
 table#legend {
   margin-top: 3rem;
+  width: 18rem;
+  // background: pink;
 }
 
 // For div colors in legend
@@ -33,4 +35,12 @@ table#legend {
 
 #yellow {
   background: yellow;
+}
+
+.ratio {
+  width: 55%;
+}
+
+.percent {
+  width: 30%;
 }
