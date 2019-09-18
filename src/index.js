@@ -35,6 +35,13 @@ function clearChart() {                                                         
     let container = document.getElementById('mondrian');
     let child = container.firstChild;
     container.removeChild(child);
+        
+    let legend = document.getElementById("legend");
+      
+    // if the divs exist, remove all of them
+    if (legend != null) {
+        legend.parentNode.removeChild(legend);
+    }
 }
 
 

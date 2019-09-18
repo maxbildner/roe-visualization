@@ -181,13 +181,16 @@ function sortLabels(labels, data) {
 }
 
 
-
+// Remove Tool Tips and Legend
 function removeToolTips() {
   // grab all div elements with class "tooltip"
   let divs = document.getElementsByClassName("tooltip");
-
+  // let legend = document.getElementById("legend");
+  
   // if the divs exist, remove all of them
-  if (divs) {
+  if (divs.length > 0) {
+    // legend.parentNode.removeChild(legend);
+
     while (divs.length > 0) {
       divs[0].parentNode.removeChild(divs[0]);
     }
@@ -248,35 +251,36 @@ function renderLegend(ratios, labels) {
   let row2Cell3 = row2.insertCell(2);
   row2Cell1.innerHTML = labels[0];
   row2Cell2.innerHTML = ratios[0];
-  row2Cell3.innerHTML = 'Red';
+  // row2Cell3.innerHTML = 'Red';
+  row2Cell3.innerHTML = '<div id="red"></div>';
 
   let row3Cell1 = row3.insertCell(0);
   let row3Cell2 = row3.insertCell(1);
   let row3Cell3 = row3.insertCell(2);
   row3Cell1.innerHTML = labels[1];
   row3Cell2.innerHTML = ratios[1];
-  row3Cell3.innerHTML = 'Blue';
+  row3Cell3.innerHTML = '<div id="blue"></div>';
 
   let row4Cell1 = row4.insertCell(0);
   let row4Cell2 = row4.insertCell(1);
   let row4Cell3 = row4.insertCell(2);
   row4Cell1.innerHTML = labels[2];
   row4Cell2.innerHTML = ratios[2];
-  row4Cell3.innerHTML = 'White';
+  row4Cell3.innerHTML = '<div id="white"></div>';;
 
   let row5Cell1 = row5.insertCell(0);
   let row5Cell2 = row5.insertCell(1);
   let row5Cell3 = row5.insertCell(2);
   row5Cell1.innerHTML = labels[3];
   row5Cell2.innerHTML = ratios[3];
-  row5Cell3.innerHTML = 'Grey';
+  row5Cell3.innerHTML = '<div id="grey"></div>';;
 
   let row6Cell1 = row6.insertCell(0);
   let row6Cell2 = row6.insertCell(1);
   let row6Cell3 = row6.insertCell(2);
   row6Cell1.innerHTML = labels[4];
   row6Cell2.innerHTML = ratios[4];
-  row6Cell3.innerHTML = 'Yellow';
+  row6Cell3.innerHTML = '<div id="yellow"></div>';
   // <table>
   //   <tr>
   //     <th>Ratio</th>

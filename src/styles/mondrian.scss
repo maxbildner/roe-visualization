@@ -3,6 +3,34 @@
 //   color: pink;
 // }
 
-// .leverage:hover {
+table#legend {
+  margin-top: 3rem;
+}
 
-// }
+// For div colors in legend
+#red, #blue, #white, #grey, #yellow {
+  height: 25px;
+  width: 25px;
+  box-sizing: border-box;
+  border: 1px solid black;
+}
+
+#red {
+  background: red;
+}
+
+#blue {
+  background: blue;
+}
+
+#white {
+  background: white
+}
+
+#grey {
+  background: grey;
+}
+
+#yellow {
+  background: yellow;
+}
