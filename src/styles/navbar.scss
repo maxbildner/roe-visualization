@@ -3,7 +3,6 @@
   height: 5rem;
   position: relative;
   margin-top: 1rem;
-  // box-shadow: 0 5px 5px -4px #80808038;    // too light
   box-shadow: 0 10px 10px -4px #80808038;    
   border-top: 2px solid #d3d3d359;
 
@@ -37,12 +36,6 @@
       width: 1rem;
       vertical-align: middle;
     }
-
-    // // input field box
-    // #stock-symbol {
-    //   // width: 76%;
-    //   width: 220px;
-    // }
   }
   
 }
@@ -53,13 +46,17 @@
   box-sizing: border-box;
   -webkit-appearance: none;
   border-bottom: 1px solid black;
-  width: 90%;
+  width: 93%;
 }
-
 
 
 // drop down div
 .ticker {
   width: 65px;
   display: inline-block;
+}
+
+
+div#stock-symbolautocomplete-list {
+  background: #eeeeee;
 }

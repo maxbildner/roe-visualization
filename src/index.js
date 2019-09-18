@@ -68,7 +68,7 @@ function handleStockGet(e) {                                                    
             }
         }, 2000);
 
-    })
+    });
 }
 
 
@@ -81,25 +81,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // when user clicks on input field, remove stockNotFound element (if exists)
     stockSymbolEl.addEventListener('click', removeStockNotFound);
 
-    // stockSymbolEl.addEventListener('keydown', event => {
-    //     // debugger
-    //     if (event.keyCode === 13) {
-    //         // debugger
-    //         getStockbtnEl.click();
-    //         // handleStockGet();                    // Call handleStockGet when user Clicks 'LOOKUP' Button
-    //     }
-    // }); 
-
     // autocompleteSearchBar(stockSymbolEl, STOCK_SAMPLE_TICKERS);
     autocompleteSearchBar(stockSymbolEl, TICKERS);
-})
-
-
-
-
-// Cut from index.html
-// < svg id = "rectangularareachart1" width = "400" height = "240" ></svg >< !-- --> <svg id="rectangularareachart2" width="400" height="240"></svg> <!-- -->
-//     <svg id="rectangularareachart3" width="400" height="240"></svg> <!-- --> <svg id="rectangularareachart4" width="400" height="240"></svg> <!-- -->
+});
 
 
 
