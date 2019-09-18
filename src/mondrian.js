@@ -25,7 +25,7 @@ export function renderMondrian(data) {
   let fractions = Object.values(data);                        // get values of data object as an array
   fractions.pop();                                            // remove ROE from array
   let labels = [ "leverage", "asset turnover", "operating margin", "interest burden", "tax burden" ];
-  let cssLabels = [ "leverage", "asset-turnover", "operating-margin", "interest-burden", "tax-burden" ];
+  // let cssLabels = [ "leverage", "asset-turnover", "operating-margin", "interest-burden", "tax-burden" ];
   // debugger
   	    
   
@@ -100,6 +100,10 @@ export function renderMondrian(data) {
   // Sort rectangle array by area descending
   rectangles = sortRectangles(rectangles);
   labels = sortLabels(labels, fractions);
+  // let cssLabels = labels.map( (string) => {    // FOR SETTING UNIQUE ID ATTRIBUTES
+  //   // debugger
+  //   return string.split(" ").join("-");
+  // });
 
   // Render Rectangles
   for (var i = 0; i < rectangles.length; i++) {
@@ -130,6 +134,7 @@ export function renderMondrian(data) {
       .attr("stroke-width", 6)
       .attr("stroke", "black")
       // .attr("id", cssLabels[i])
+      .attr("class", "rectangle")
       .on("mouseover", function () { return tooltip.style("visibility", "visible"); })
       .on("mousemove", function () { return tooltip.style("top", (event.pageY - 10) + "px").style("left", (event.pageX + 10) + "px"); })
       .on("mouseout", function () { return tooltip.style("visibility", "hidden"); });

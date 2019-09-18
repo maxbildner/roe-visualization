@@ -44,3 +44,15 @@ table#legend {
 .percent {
   width: 30%;
 }
+
+
+// rectangles on mouse hover, change fill color
+// #operating-margin:hover {
+//   fill: green;
+// }
+// [ "leverage", "asset-turnover", "operating-margin", "interest-burden", "tax-burden" ]
+
+.rectangle:hover {
+  opacity: .8;
+}
+
