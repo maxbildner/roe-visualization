@@ -21,7 +21,7 @@ export function autocompleteSearchBar(stockSymbolEl, STOCK_TICKERS) {
 		// Close all autosuggestion div tickers
 		closeDropDownList();
 		if (!value) { return false; }
-		currentSelection = -1;
+		currentSelection = -1;	// refers to index in array of drop down choices
 		
 		// Make DIV container element that will contain each ticker element
 		container = document.createElement("DIV");
@@ -66,10 +66,18 @@ export function autocompleteSearchBar(stockSymbolEl, STOCK_TICKERS) {
 				stockItem.innerHTML += "<input type='hidden' value='" + ticker + "'>";
 				// stockItem == <div><strong>A</strong>"APL" <input type="hidden" value="AAPL"></div>
 				
+				// OLD
 				// When user clicks on a dropdown ticker item, reset the original input field's value to that
+				// stockItem.addEventListener("click", function (e) {
+				// 		stockSymbolEl.value = this.getElementsByTagName("input")[0].value;
+				// 		closeDropDownList();
+				// });
+				// NEW
 				stockItem.addEventListener("click", function (e) {
-						stockSymbolEl.value = this.getElementsByTagName("input")[0].value;
-						closeDropDownList();
+					const getStockbtnEl = document.getElementById('get-stock');
+					stockSymbolEl.value = this.getElementsByTagName("input")[0].value;
+					getStockbtnEl.click();
+					closeDropDownList();
 				});
 
 				// debugger
@@ -100,7 +108,8 @@ export function autocompleteSearchBar(stockSymbolEl, STOCK_TICKERS) {
 			currentSelection--;
 			addActiveClass(dropDownList);
 		} else if (e.keyCode == 13) {   // ENTER key
-			if (currentSelection > -1) {
+			if (currentSelection > -1) {	// if user is browsing through choices with arrow key
+					// debugger
 					// When user hits enter, simulate a "click" on that ticker
 					if (dropDownList) dropDownList[currentSelection].click();
 				}
