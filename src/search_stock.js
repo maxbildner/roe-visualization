@@ -48,12 +48,16 @@ export function autocompleteSearchBar(stockSymbolEl, STOCK_TICKERS) {
 				stockItem = document.createElement("DIV");
 				
 				// Bold the character that matches
-				stockItem.innerHTML = "<strong>" + ticker.substr(0, value.length) + "</strong>";
-				// stockItem == <div><strong>A</strong>
+				stockItem.innerHTML = ("<span class='ticker'><strong>"
+					+ ticker.substr(0, value.length) + "</strong>"
+					+ ticker.substr(value.length)
+					+ "</span>");
+				// stockItem == <div><span class="ticker"><strong>A</strong>
 				
 				// Add the rest of the ticker (letters not bolded)
-				stockItem.innerHTML += ticker.substr(value.length);
-				// stockItem == <div><strong>A</strong>"APL"</div>
+				// stockItem.innerHTML += ticker.substr(value.length);
+				// stockItem == <div><span class="ticker"><strong>A</strong>"APL"</span></div>
+				// debugger
 
 				// Insert stock Name as another p element (inline)
 				stockItem.innerHTML += " " + "<p style='display: inline-block;margin:0 auto;'>" + name + "</p>";

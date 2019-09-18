@@ -21,7 +21,8 @@
 
   // right nav section
   #lookup-input {
-    width: 242px;
+    // width: 242px;           // OLD
+    width: 324px;           
     margin-right: 3rem;
     position: absolute;
     right: 0%;
@@ -37,11 +38,11 @@
       vertical-align: middle;
     }
 
-    // input field box
-    #stock-symbol {
-      // width: 76%;
-      width: 220px;
-    }
+    // // input field box
+    // #stock-symbol {
+    //   // width: 76%;
+    //   width: 220px;
+    // }
   }
   
 }
@@ -52,4 +53,13 @@
   box-sizing: border-box;
   -webkit-appearance: none;
   border-bottom: 1px solid black;
+  width: 90%;
+}
+
+
+
+// drop down div
+.ticker {
+  width: 65px;
+  display: inline-block;
 }
