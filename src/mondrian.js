@@ -224,19 +224,59 @@ function renderLegend(ratios, labels) {
   // https://www.w3schools.com/jsref/met_table_insertrow.asp
   // create div legend
   let table = document.createElement("TABLE");
+  table.setAttribute("id", "legend");
+
   let row1 = table.insertRow(0);
   let row2 = table.insertRow(1);
+  let row3 = table.insertRow(2);
+  let row4 = table.insertRow(3);
+  let row5 = table.insertRow(4);
+  let row6 = table.insertRow(5);
 
-  let cell1 = row1.insertCell(0);
-  let cell2 = row1.insertCell(1);
-  cell1.innerHTML = "Ratio";
-  cell2.innerHTML = "%";
+  // COLORS = ['red', 'blue', 'white', 'grey', 'yellow'];
+  // Header Row
+  let row1Cell1 = row1.insertCell(0);
+  let row1Cell2 = row1.insertCell(1);
+  let row1Cell3 = row1.insertCell(2);
+  row1Cell1.innerHTML = "Ratio";
+  row1Cell2.innerHTML = "%";
+  row1Cell3.innerHTML = "Color";
 
-  let cell3 = row2.insertCell(0);
-  let cell4 = row2.insertCell(1);
-  cell3.innerHTML = labels[0];
-  cell4.innerHTML = ratios[0];
+  // Data Rows
+  let row2Cell1 = row2.insertCell(0);
+  let row2Cell2 = row2.insertCell(1);
+  let row2Cell3 = row2.insertCell(2);
+  row2Cell1.innerHTML = labels[0];
+  row2Cell2.innerHTML = ratios[0];
+  row2Cell3.innerHTML = 'Red';
 
+  let row3Cell1 = row3.insertCell(0);
+  let row3Cell2 = row3.insertCell(1);
+  let row3Cell3 = row3.insertCell(2);
+  row3Cell1.innerHTML = labels[1];
+  row3Cell2.innerHTML = ratios[1];
+  row3Cell3.innerHTML = 'Blue';
+
+  let row4Cell1 = row4.insertCell(0);
+  let row4Cell2 = row4.insertCell(1);
+  let row4Cell3 = row4.insertCell(2);
+  row4Cell1.innerHTML = labels[2];
+  row4Cell2.innerHTML = ratios[2];
+  row4Cell3.innerHTML = 'White';
+
+  let row5Cell1 = row5.insertCell(0);
+  let row5Cell2 = row5.insertCell(1);
+  let row5Cell3 = row5.insertCell(2);
+  row5Cell1.innerHTML = labels[3];
+  row5Cell2.innerHTML = ratios[3];
+  row5Cell3.innerHTML = 'Grey';
+
+  let row6Cell1 = row6.insertCell(0);
+  let row6Cell2 = row6.insertCell(1);
+  let row6Cell3 = row6.insertCell(2);
+  row6Cell1.innerHTML = labels[4];
+  row6Cell2.innerHTML = ratios[4];
+  row6Cell3.innerHTML = 'Yellow';
   // <table>
   //   <tr>
   //     <th>Ratio</th>
