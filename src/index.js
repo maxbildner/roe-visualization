@@ -17,6 +17,7 @@ import { TICKERS } from './stock_tickers_full';
 import "./styles/app.scss";
 
 import { renderMondrian } from './mondrian';
+import { generateKeyPairSync } from 'crypto';
 
 
 // OLD clearChart for albers graph
@@ -113,10 +114,32 @@ document.addEventListener('DOMContentLoaded', () => {
 // 	.catch(error => console.error(error));
 
 
+//  0  1  2  3  4
+// [2, 7, 1, 0, 6], 8   => [0, 4]
+// const twoSum = (array, target) => {
+//     let pairs = [];              // to return
+//     let complements = {};
 
+//     // loop through each num in array
+//     for (let i = 0; i < array.length; i++) {
+//         let num = array[i];
+//         // i = 0: num = 2
+//         let complement = target - num;
+//         // i = 0: complement = 8 - 2 = 6
 
+//         // populate complements object with num and current index
+//         complements[num] = i;
+//         // i = 0: complements = { "2": 0 }
 
+//         // check if complement is a key in complements object, pair found!
+//         if (complements[complement]) {
+//             pairs.push([complements[complement], i]);
+//         }
+//     }
 
+//     return pairs;
+// }
+// console.log(twoSum([2, 7, 1, 0, 6], 8));
 
 
 

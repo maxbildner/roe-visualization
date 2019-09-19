@@ -2,7 +2,7 @@
 // https://www.christopherlovell.co.uk/blog/2017/09/03/mondrian-generator.html
 
 
-const COLORS = ['red', 'blue', 'white', 'grey', 'yellow'];
+let colors = ['red', 'blue', 'white', 'grey', 'yellow'];
 
 // data == object
 export function renderMondrian(data) {
@@ -22,10 +22,18 @@ export function renderMondrian(data) {
   // const fractions = [0.22, 0.10, 0.60, 0.08, 0.15];		    // HARD CODED FOR TESTING (general electric)
   // FOR TESTING*************************
 
+  // let newData = sortData(data);
+  
   let fractions = Object.values(data);                        // get values of data object as an array
   fractions.pop();                                            // remove ROE from array
+  // labels below are in original order from data input
   let labels = [ "leverage", "asset turnover", "operating margin", "interest burden", "tax burden" ];
-  // let cssLabels = [ "leverage", "asset-turnover", "operating-margin", "interest-burden", "tax-burden" ];
+  
+  // Sort labels according to descending corresponding fractions
+  labels = sortLabels(labels, fractions);
+
+  // Sort fractions descending
+  fractions = fractions.sort( (a, b) => b - a);
   // debugger
   	    
   
@@ -63,7 +71,7 @@ export function renderMondrian(data) {
           "y": y,
           "width": rectangles[i]['width'] - width,
           height,
-          area: (rectangles[i]['width'] - width) * (height) 
+          area: (rectangles[i]['width'] - width) * (height)
         }) 
       } else {
         width = rectangles[i]['width'];
@@ -97,9 +105,16 @@ export function renderMondrian(data) {
   // remove Old Tooltips (if there are any)
   removeToolTips();
   
+  // debugger
   // Sort rectangle array by area descending
   rectangles = sortRectangles(rectangles);
-  labels = sortLabels(labels, fractions);
+  // labels = sortLabels(labels, fractions);
+  // debugger
+
+  colors = sortColors(labels, fractions, rectangles);
+
+  // debugger
+  // colors = sortColors(labels, fractions, rectangles);
   // let cssLabels = labels.map( (string) => {    // FOR SETTING UNIQUE ID ATTRIBUTES
   //   // debugger
   //   return string.split(" ").join("-");
@@ -130,7 +145,7 @@ export function renderMondrian(data) {
       .attr("y", rectangles[i]['y'])
       .attr("width", rectangles[i]['width'])
       .attr("height", rectangles[i]['height'])
-      .attr("fill", COLORS[i])
+      .attr("fill", colors[i])
       .attr("stroke-width", 6)
       .attr("stroke", "black")
       // .attr("id", cssLabels[i])
@@ -327,3 +342,37 @@ function renderLegend(ratios, labels) {
   container.appendChild(table);
   // debugger
 }
+
+
+
+// PERMANENTLY MAPS A COLOR TO A RESPECTIVE RATIO
+function sortColors(labels) {
+  // labels = ["operating margin", "leverage", "tax burden", "asset turnover", "interest burden"]
+  // fractions = [0.6020601519276022, 0.22935164326030988, 0.15226223293382074, 0.10071151510740874, 0.08438554322914166]
+  // original colors = ['red', 'blue', 'white', 'grey', 'yellow'];
+  // mapped colors = ['blue', 'red', 'white', 'grey', 'yellow'];
+  
+  let colors = [];
+  for (let i = 0; i < labels.length; i++) {
+    let label = labels[i];
+    switch (label) {
+      case "operating margin":
+        colors.push("blue");
+        break;
+      case "leverage":
+        colors.push("red");
+        break;
+      case "tax burden":
+        colors.push("white");
+        break;
+      case "asset turnover":
+        colors.push("grey");
+        break;
+      case "interest burden":
+        colors.push("yellow");
+    }
+  }
+
+  return colors;
+}
+
