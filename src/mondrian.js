@@ -112,8 +112,11 @@ export function renderMondrian(data) {
   //   return string.split(" ").join("-");
   // });
 
+  // capture fractions
+  let fractionsCopy = fractions;
+
   // Render Rectangles
-  for (var i = 0; i < rectangles.length; i++) {
+  for (let i = 0; i < rectangles.length; i++) {
 
     // For Random Colors:
     // let condition = Math.random()
@@ -129,7 +132,10 @@ export function renderMondrian(data) {
       .style("visibility", "hidden")
       .text(labels[i])
       .attr("class", "tooltip")
-
+    
+    // capture the label at the current iteration
+    let labelText = labels[i];
+    
     // Append rectangle element to svg element
     svg.append("rect")
       .attr("x", rectangles[i]['x'])
@@ -141,9 +147,17 @@ export function renderMondrian(data) {
       .attr("stroke", "black")
       // .attr("id", cssLabels[i])
       .attr("class", "rectangle")
-      .on("mouseover", function () { return tooltip.style("visibility", "visible"); })
+      // .on("mouseover", function () { return tooltip.style("visibility", "visible"); })   // OLD
+      .on("mouseover", function () { 
+        // Render Dynamic Title (fixed tooltip component)
+        renderTitle(labelText, fractions[i]);
+        return tooltip.style("visibility", "visible");
+      })
       .on("mousemove", function () { return tooltip.style("top", (event.pageY - 10) + "px").style("left", (event.pageX + 10) + "px"); })
-      .on("mouseout", function () { return tooltip.style("visibility", "hidden"); });
+      .on("mouseout", function () { 
+        removeTitle();
+        return tooltip.style("visibility", "hidden"); 
+      });
   }
 
   // Render legend
@@ -367,3 +381,63 @@ function sortColors(labels) {
   return colors;
 }
 
+
+
+
+
+function renderTitle(label, fraction) {
+  // grab section 3 div (mondrian)
+  // let parent = document.getElementById('mondrian');
+  let parent = document.getElementById('legend');
+
+  // round fraction to 2 dec. and format as %
+  fraction = fraction.toFixed(2) * 100;
+
+  let container = document.getElementById('title-container');
+
+  // if title-container div already exists then delete it
+  if (container) {
+    // delete it
+    parent.removeChild(container);
+    createTitleContainer();
+  } else {
+    createTitleContainer();
+  }
+
+  function createTitleContainer() {
+    // create div to append to parent
+    let titleContainer = document.createElement('div');
+    titleContainer.setAttribute('id', 'title-container');
+
+    let title = document.createElement('p');
+    title.setAttribute('id', 'title')
+
+    // create percentage to go underneath title
+    let percentage = document.createElement('p');
+    percentage.setAttribute('id', 'percentage');
+
+    // give title some text
+    title.innerHTML = label;
+
+    // give percentage some text
+    percentage.innerHTML = fraction;
+
+    // append title and percentage p elements to parent (in order)
+    titleContainer.appendChild(title);
+    titleContainer.appendChild(percentage);
+
+    // append div to parent
+    parent.appendChild(titleContainer);
+  }
+}
+
+
+function removeTitle(){
+  // grab container div to delete
+  let container = document.getElementById('title-container');
+
+  // delete
+  if (container) {
+    container.parentNode.removeChild(container);
+  }
+}
