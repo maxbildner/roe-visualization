@@ -42,9 +42,9 @@ This project attempts to visualize the 5-point model.
 
 
 ### MVPS
-- 1 Search Bar. user can type in the name of a company
+- 1 Search Bar. User can type in the name of a company by ticker or by name
 - 2 Main Graph- displays breakdown of each factor
-- 3 other graphs- users can toggle between different graph types (2 point, and 3 point breakdown)
+- 3 Legend & Dynamic fixed tooltip component. On hover of any rectangle, the name/percentage of the tooltip changes.
 
 
 ### Development Timeline
