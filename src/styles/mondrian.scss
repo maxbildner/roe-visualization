@@ -8,8 +8,8 @@
 }
 
 table#legend {
-  // margin-top: 3rem;
-  margin-top: 5rem;
+  margin-top: 3rem;
+  // margin-top: 5rem;
   margin-left: 2rem;
   width: 18rem;
   display: inline-block;
@@ -67,5 +67,15 @@ table#legend {
 
 #title-container {
   display: block;
+  margin-bottom: 2rem;
 }
 
+
+
+#title {
+  font-size: 2rem;
+}
+
+#percentage {
+  font-size: 2rem;
+}

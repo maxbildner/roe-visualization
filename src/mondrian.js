@@ -391,12 +391,19 @@ function sortColors(labels) {
 
 
 function renderTitle(label, fraction) {
+  // convert label to uppercase first characters
+  label = label.split(' ').map( (word) => {
+    return word[0].toUpperCase() + word.slice(1);
+  }).join(' ');
+
   // grab section 3 div (mondrian)
   // let parent = document.getElementById('mondrian');
   let parent = document.getElementById('legend');
 
   // round fraction to 2 dec. and format as %
   fraction = fraction.toFixed(2) * 100;
+  // add % to fraction
+  fraction = fraction + "%";
 
   let container = document.getElementById('title-container');
 
@@ -435,6 +442,7 @@ function renderTitle(label, fraction) {
     // append div to parent
     // parent.appendChild(titleContainer);
     parent.insertBefore(titleContainer, parent.firstChild);
+    
   }
 }
 
