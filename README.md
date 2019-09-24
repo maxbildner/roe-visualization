@@ -1,11 +1,13 @@
 # DuPont Model-visualization
 Live Site: https://maxbildner.github.io/roe-visualization
 
+
 ### Summary: 
 This project is a visualization of ROE (Return on Equity) for publicly listed US firms, inspired by Piet Mondrian paintings and the DuPont analysis.
 
 The generated painting is a proportional area chart where each rectangle corresponds to a financial ratio.
 The larger a rectangle's area, the larger the impact of that ratio on ROE.
+
 
 ### DuPont Analysis Background Info: 
 The DuPont Analysis attempts to explain where the profitabiltiy (measured in Return on Equity ROE)
@@ -28,17 +30,14 @@ ROE =
 	- Net Income / EBT
 
 
-### Project Overview:
-This project attempts to visualize the 5-point model. 
-
 ### Functionality
 	- users can type in the name of a publicly listed company into a search bar
 	- a graph will appear showing the breakdown of ROE (to what extent each factor affects ROE)
 	- there are options/buttons to toggle between different graphs/visualizations
 
+
 ### Wireframe
 ![wireframe1](https://raw.githubusercontent.com/maxbildner/roe-visualization/master/wireframe2.png "wireframe 1")
-
 
 
 ### Technologies Employed
@@ -55,7 +54,6 @@ This project attempts to visualize the 5-point model.
 
 
 ### Development Timeline
-
 Day 1:
 - review D3 Tutorial
 - complete skeleton setup and basic page
@@ -67,13 +65,13 @@ Day 2:
 - search bar
 
 Day 3:
-- create Main graph
+- Main graph
 
 Day 4:
-- create graph 2
+- Main graph
 
 Day 5:
-- create graph 3
+- Tooltips, legend, styling
 
 BONUS
 - find new way to visualize data
