@@ -3,10 +3,18 @@
 //   color: pink;
 // }
 
+#svg-container {
+  display: inline-block;
+}
+
 table#legend {
-  margin-top: 3rem;
+  // margin-top: 3rem;
+  margin-top: 5rem;
+  margin-left: 2rem;
   width: 18rem;
+  display: inline-block;
   // background: pink;
+  vertical-align: top;
 }
 
 // For div colors in legend
@@ -58,6 +66,6 @@ table#legend {
 
 
 #title-container {
-  // display: inline-block;
+  display: block;
 }
 

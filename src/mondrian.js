@@ -39,7 +39,8 @@ export function renderMondrian(data) {
     .append("svg")
     .attr("width", w)
     .attr("height", h)
-    .attr("style", "outline: thick solid black;");
+    .attr("style", "outline: thick solid black;")
+    .attr("id", "svg-container");
 
   // Initialize array with 1 rectangle (the outermost/container)
   let rectangles = [{ "x": 0, "y": 0, "width": w, "height": h }]
@@ -245,6 +246,10 @@ function renderLegend(ratios, labels) {
   //   </div>
   // </div>
 
+  // let legendContainer = document.createElement('div');
+  // legendContainer.setAttribute('id', 'legend-container');
+
+
   // https://www.w3schools.com/jsref/met_table_insertrow.asp
   // create div legend
   let table = document.createElement("TABLE");
@@ -409,10 +414,11 @@ function renderTitle(label, fraction) {
     let titleContainer = document.createElement('div');
     titleContainer.setAttribute('id', 'title-container');
 
+    // create p element to append to title container
     let title = document.createElement('p');
     title.setAttribute('id', 'title')
 
-    // create percentage to go underneath title
+    // create percentage to go underneath title (append to title container)
     let percentage = document.createElement('p');
     percentage.setAttribute('id', 'percentage');
 
@@ -427,7 +433,8 @@ function renderTitle(label, fraction) {
     titleContainer.appendChild(percentage);
 
     // append div to parent
-    parent.appendChild(titleContainer);
+    // parent.appendChild(titleContainer);
+    parent.insertBefore(titleContainer, parent.firstChild);
   }
 }
 
