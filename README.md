@@ -1,6 +1,13 @@
 # DuPont Model-visualization
+Live Site: https://maxbildner.github.io/roe-visualization
 
-### Background Info: 
+### Summary: 
+This project is a visualization of ROE (Return on Equity) for publicly listed US firms, inspired by Piet Mondrian paintings and the DuPont analysis.
+
+The generated painting is a proportional area chart where each rectangle corresponds to a financial ratio.
+The larger a rectangle's area, the larger the impact of that ratio on ROE.
+
+### DuPont Analysis Background Info: 
 The DuPont Analysis attempts to explain where the profitabiltiy (measured in Return on Equity ROE)
 of a firm comes from. 
 
@@ -30,7 +37,7 @@ This project attempts to visualize the 5-point model.
 	- there are options/buttons to toggle between different graphs/visualizations
 
 ### Wireframe
-![wireframe1](https://i.imgur.com/S51pOLF.png "wireframe 1")
+![wireframe1](https://raw.githubusercontent.com/maxbildner/roe-visualization/master/wireframe2.png "wireframe 1")
 
 
 
