@@ -4,6 +4,8 @@
 @import "./description.scss";
 @import "./albers.scss";
 @import "./mondrian.scss";
+@import "./footer.scss";
+
 
 // Remove white gap inbetween top 2 squares and bottom 2 squares
 svg#rectangularareachart1, svg#rectangularareachart2 {
@@ -27,7 +29,7 @@ h3 {
   font-family: 'Times New Roman', Times, serif;
 }
 
-#nav-bar, #section-2, #section-3 {
+#body, #nav-bar, #section-2, #section-3, #footer {
   min-width: 780px;
 }
 

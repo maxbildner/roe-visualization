@@ -1,0 +1,44 @@
+#footer {
+  padding: 1em 0 1em 0 ;
+  background-color: #4686a0;
+  color: rgba(255, 255, 255, 0.75);
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  font-family: Helvetica-Light;     // overwrites default times new roman
+}
+
+// #footer a {
+//   border-bottom-color: rgba(255, 255, 255, 0.5);
+// }
+
+.icons {
+  li {
+    display: inline-block;
+    margin: 1rem 1rem;
+    a {
+      color: white;
+      &:hover {
+        color: purple;
+      }
+      &visited {
+        color: white;
+      }
+    }
+  }
+}
+
+.copyright {
+  li {
+    display: inline-block;
+    margin: 1rem .70rem;
+    a {
+      color: white;
+      
+      &visited {
+        color: white;
+      }
+    }
+  }
+}
