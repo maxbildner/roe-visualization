@@ -1634,6 +1634,9 @@
 // }
 
 
+import { STOCK_SAMPLE_NAMES } from './stock_sample_data';
+
+
 
 const yearMapping = {
     2018: 0,
@@ -1724,9 +1727,6 @@ function calculateROE(stockData, year=2018) {            // returns obj of ROE c
 
 
 
-const calculateFractionalArea = () => {
-
-}
 
 
 
@@ -1818,10 +1818,17 @@ export const displaySection2 =  (stockData) => {
     });
     // largestRatio = "leverage"
 
+    // Grab ticker from input box
+    let ticker = document.getElementById('stock-symbol').value;
+
+    // Get company name
+    let name = STOCK_SAMPLE_NAMES[ticker];
+    name = formatName(name);
+
     let increaseOrDecrease;
     (largestNum > 0) ? (increaseOrDecrease = 'increase') : increaseOrDecrease = 'decrease';
     
-    let text = "The primary reason for the " + increaseOrDecrease + " in ROE over 2018 is the ";
+    let text = "The primary reason for " + name + "'s " + increaseOrDecrease + " in ROE over 2018 is the ";
 
     // Grab section2 div (parent container)
     let container = document.getElementById('section-2');
@@ -1864,8 +1871,20 @@ export const removeDisplaySection2 = () => {
     let parent = document.getElementById('section-2');
     // debugger
     
-    if (displayDiv) {   // if it exists
-        displayDiv.remove();     // doesn't work
+    if (displayDiv) {               // if it exists
+        displayDiv.remove();        // doesn't work
         // parent.removeChild(displayDiv);     
     }
+}
+
+
+
+// helper function, takes in string, ex. "APPLE INC" => "Apple Inc"
+function formatName(name) {
+    let words = name.split(" ");
+    let newName = words.map( (word) => {
+        return word[0] + word.slice(1).toLowerCase();
+    });
+
+    return newName.join(" ");
 }
