@@ -20,15 +20,6 @@ import { renderMondrian } from './mondrian';
 import { generateKeyPairSync } from 'crypto';
 
 
-// OLD clearChart for albers graph
-// function clearChart() {                                                         // removes all children nodes from all svg elements
-//     let allSvgs = document.querySelectorAll("[id^=rectangular]");
-//     allSvgs.forEach((svg) => {                                                  // svg ==  <svg>...</svg>
-//         while (svg.firstChild) {
-//             svg.removeChild(svg.firstChild);
-//         }
-//     });
-// }
 
 
 // NEW clearChart for mondrian graph
@@ -85,6 +76,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     autocompleteSearchBar(stockSymbolEl, STOCK_SAMPLE_TICKERS);
     // autocompleteSearchBar(stockSymbolEl, TICKERS);
+
+    // Load Mondrian Graph once page loads, so page isn't blank
+    stockSymbolEl.value = 'AAPL';
+    handleStockGet();
 });
 
 
