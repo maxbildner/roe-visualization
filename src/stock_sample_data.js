@@ -1,4 +1,4 @@
-export const STOCK_SAMPLE_DATA = {
+export const STOCK_SAMPLE_NAMES = {
     AAPL: "APPLE INC",
     AXP: "AMER EXPRESS CO",
     BA: "BOEING CO",

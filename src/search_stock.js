@@ -1,4 +1,5 @@
-import { NAMES } from './stock_names_full';
+// import { NAMES } from './stock_names_full';
+import { STOCK_SAMPLE_TICKERS } from './stock_sample_data';
 
 // FROM TUTORIAL: https://www.w3schools.com/howto/howto_js_autocomplete.asp
 export function autocompleteSearchBar(stockSymbolEl, STOCK_TICKERS) {
@@ -34,7 +35,7 @@ export function autocompleteSearchBar(stockSymbolEl, STOCK_TICKERS) {
 		// Search Algo: O(n) loop through each ticker in array (and simultaneously loop through NAMES array)
 		for (let i = 0; i < STOCK_TICKERS.length; i++) {
 			let ticker = STOCK_TICKERS[i];
-			let name = NAMES[i];
+			let name = STOCK_SAMPLE_TICKERS[i];
 
 			// Check if ticker string starts w/ same characters as the users input field
 			let inputMatchesTicker = ticker.substr(0, value.length).toUpperCase() == value.toUpperCase();

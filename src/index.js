@@ -12,8 +12,8 @@ import {
     removeStockNotFound
 } from './loading';
 import { autocompleteSearchBar } from './search_stock';
-// import { STOCK_SAMPLE_TICKERS } from './stock_sample_data';
-import { TICKERS } from './stock_tickers_full';
+import { STOCK_SAMPLE_TICKERS } from './stock_sample_data';
+// import { TICKERS } from './stock_tickers_full';
 import "./styles/app.scss";
 
 import { renderMondrian } from './mondrian';
@@ -83,8 +83,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // when user clicks on input field, remove stockNotFound element (if exists)
     stockSymbolEl.addEventListener('click', removeStockNotFound);
 
-    // autocompleteSearchBar(stockSymbolEl, STOCK_SAMPLE_TICKERS);
-    autocompleteSearchBar(stockSymbolEl, TICKERS);
+    autocompleteSearchBar(stockSymbolEl, STOCK_SAMPLE_TICKERS);
+    // autocompleteSearchBar(stockSymbolEl, TICKERS);
 });
 
 
