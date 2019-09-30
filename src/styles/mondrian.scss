@@ -70,12 +70,35 @@ table#legend {
   margin-bottom: 2rem;
 }
 
-
-
 #title {
   font-size: 2rem;
 }
 
 #percentage {
   font-size: 2rem;
+}
+
+.tooltip-label {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip-label .tooltiptext {
+  visibility: hidden;
+  width: 260px;
+  background: grey;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Positioning the tooltip */
+  position: absolute;
+  z-index: 10;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -40px;
+}
+
+.tooltip-label:hover .tooltiptext {
+  visibility: visible;
 }

@@ -266,7 +266,53 @@ function renderLegend(ratios, labels) {
   // mapped colors = ['blue', 'red', 'white', 'grey', 'yellow'];
 
   // Dynamically create id names that correspond to colors
-  let newColors = sortColors(labels);
+  // let newColors = sortColors(labels);
+  
+
+  // Create Tooltips on hover that explain what each leverage ratio is
+  let leverage = "<b>Leverage</b> (aka Equity Multiplier ratio) quantifies how much a company's assets are fiananced by equity. It's calculated by dividing a firm's total asset value by total net equity."; // The higher the ratio, the more a firm is funded by debt."; 
+  // leverage:  https://www.investopedia.com/terms/e/equitymultiplier.asp
+
+  let assetTurnover = "<b>Asset Turnover</b> measures how efficient a firm is at using its assets to generate revenue. It's calculated by dividing Sales/Revenue";
+  // assetTurnover: https://www.investopedia.com/terms/a/assetturnover.asp
+
+  let taxBurden = "A high <b>Tax Burden</b> means that a company is keeping more of its pretax income, which will result in a higher ROE and vice versa. It's calculated by dividing Net Income/Earnings Before Taxes";
+  // https://xplaind.com/879680/expanded-dupont-roe-analysis
+
+  let interestBurden = "A high <b>Interest Burden</b> means that a company is has reduced interest expense, which will result in a higher ROE. It's calcualted by dividing Earnings Before Taxes (EBT)/EBIT";
+
+  let operatingMargin = "<b>Operating Margin</b> measures operating performance without considering taxes/debt. A higher operating margins result in a higher ROE. It's calculated by dividing EBIT by Revenue";
+
+  let leverageLabel, assetTurnoverLabel, taxBurdenLabel, interestBurdenLabel, operatingMarginLabel;
+  let leverageRatio, assetTurnoverRatio, taxBurdenRatio, interestBurdenRatio, operatingMarginRatio;
+
+  // 
+  labels.forEach( (strLabel, i) => {
+    switch(strLabel) {
+      case "leverage":
+        leverageLabel = `<span class="tooltip-label">${strLabel}<span class="tooltiptext">${leverage}</span></span>`;
+        leverageRatio = `${ratios[i]*100}`;
+        break;
+      case "asset turnover":
+        assetTurnoverLabel = `<span class="tooltip-label">${strLabel}<span class="tooltiptext">${assetTurnover}</span></span>`;
+        assetTurnoverRatio = `${ratios[i]*100}`;
+        break;
+      case "tax burden":
+        taxBurdenLabel = `<span class="tooltip-label">${strLabel}<span class="tooltiptext">${taxBurden}</span></span>`;
+        taxBurdenRatio = `${ratios[i]*100}`;
+        break;
+      case "interest burden":
+        interestBurdenLabel = `<span class="tooltip-label">${strLabel}<span class="tooltiptext">${interestBurden}</span></span>`;
+        interestBurdenRatio = `${ratios[i]*100}`;
+        break;
+      case "operating margin":
+        operatingMarginLabel = `<span class="tooltip-label">${strLabel}<span class="tooltiptext">${operatingMargin}</span></span>`;
+        operatingMarginRatio = `${ratios[i]*100}`;
+    }
+  });  
+
+
+
 
   // Header Row
   let row1Cell1 = row1.insertCell(0);
@@ -279,41 +325,53 @@ function renderLegend(ratios, labels) {
   row1Cell2.innerHTML = "%";
   row1Cell3.innerHTML = "Color";
 
-  // Data Rows
-  let row2Cell1 = row2.insertCell(0);
-  let row2Cell2 = row2.insertCell(1);
-  let row2Cell3 = row2.insertCell(2);
-  row2Cell1.innerHTML = labels[0];
-  row2Cell2.innerHTML = ratios[0] * 100;
-  row2Cell3.innerHTML = `<div id="${newColors[0]}"></div>`;
+  // Data Rows                                                
+  // Leverage
+  let row2Cell1 = row2.insertCell(0);   
+  let row2Cell2 = row2.insertCell(1);   
+  let row2Cell3 = row2.insertCell(2);   
+  // row2Cell1.innerHTML = labels[0];                             // OLD
+  // row2Cell2.innerHTML = ratios[0] * 100;                       // OLD 
+  row2Cell1.innerHTML = leverageLabel;                            // Ratio
+  row2Cell2.innerHTML = leverageRatio;                            // Percentage %
+  // row2Cell3.innerHTML = `<div id="${newColors[0]}"></div>`;    // OLD
+  row2Cell3.innerHTML = `<div id="red"></div>`;       // Color box
 
-  let row3Cell1 = row3.insertCell(0);
-  let row3Cell2 = row3.insertCell(1);
-  let row3Cell3 = row3.insertCell(2);
-  row3Cell1.innerHTML = labels[1];
-  row3Cell2.innerHTML = ratios[1] * 100;
-  row3Cell3.innerHTML = `<div id="${newColors[1]}"></div>`;
+  let row3Cell1 = row3.insertCell(0);   
+  let row3Cell2 = row3.insertCell(1);   
+  let row3Cell3 = row3.insertCell(2);   
+  // row3Cell1.innerHTML = labels[1];
+  // row3Cell2.innerHTML = ratios[1] * 100;
+  row3Cell1.innerHTML = assetTurnoverLabel;
+  row3Cell2.innerHTML = assetTurnoverRatio;
+  row3Cell3.innerHTML = `<div id="grey"></div>`;
 
   let row4Cell1 = row4.insertCell(0);
   let row4Cell2 = row4.insertCell(1);
   let row4Cell3 = row4.insertCell(2);
-  row4Cell1.innerHTML = labels[2];
-  row4Cell2.innerHTML = ratios[2] * 100;
-  row4Cell3.innerHTML = `<div id="${newColors[2]}"></div>`;
+  // row4Cell1.innerHTML = labels[2];
+  // row4Cell2.innerHTML = ratios[2] * 100;
+  row4Cell1.innerHTML = taxBurdenLabel;
+  row4Cell2.innerHTML = taxBurdenRatio;
+  row4Cell3.innerHTML = `<div id="white"></div>`;
 
   let row5Cell1 = row5.insertCell(0);
   let row5Cell2 = row5.insertCell(1);
   let row5Cell3 = row5.insertCell(2);
-  row5Cell1.innerHTML = labels[3];
-  row5Cell2.innerHTML = ratios[3] * 100;
-  row5Cell3.innerHTML = `<div id="${newColors[3]}"></div>`;
+  // row5Cell1.innerHTML = labels[3];
+  // row5Cell2.innerHTML = ratios[3] * 100;
+  row5Cell1.innerHTML = interestBurdenLabel;
+  row5Cell2.innerHTML = interestBurdenRatio;
+  row5Cell3.innerHTML = `<div id="yellow"></div>`;
 
   let row6Cell1 = row6.insertCell(0);
   let row6Cell2 = row6.insertCell(1);
   let row6Cell3 = row6.insertCell(2);
-  row6Cell1.innerHTML = labels[4];
-  row6Cell2.innerHTML = ratios[4] * 100;
-  row6Cell3.innerHTML = `<div id="${newColors[4]}"></div>`;
+  // row6Cell1.innerHTML = labels[4];
+  // row6Cell2.innerHTML = ratios[4] * 100;
+  row6Cell1.innerHTML = operatingMarginLabel;
+  row6Cell2.innerHTML = operatingMarginRatio;
+  row6Cell3.innerHTML = `<div id="blue"></div>`;
   // <table>
   //   <tr>
   //     <th>Ratio</th>
