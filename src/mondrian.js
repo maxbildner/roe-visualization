@@ -408,6 +408,38 @@ function renderLegend(ratios, labels) {
   // Append div legend to mondrian div
   container.appendChild(table);
   // debugger
+  
+  
+
+  // ON First page load, title div element will not exist, so make it
+  let title = document.getElementById('title');
+  if (title === null) {
+    let titleContainer = document.createElement('div');
+    let parent = document.getElementById('legend');
+    titleContainer.setAttribute('id', 'title-container');
+
+    // create p element to append to title container
+    let title = document.createElement('p');
+    title.setAttribute('id', 'title')
+
+    // create percentage to go underneath title (append to title container)
+    let percentage = document.createElement('p');
+    percentage.setAttribute('id', 'percentage');
+
+    // give title some text
+    title.innerHTML = "<br>";
+
+    // give percentage some text
+    percentage.innerHTML = "<br>";
+
+    // append title and percentage p elements to parent (in order)
+    titleContainer.appendChild(title);
+    titleContainer.appendChild(percentage);
+
+    // append div to parent
+    // parent.appendChild(titleContainer);
+    parent.insertBefore(titleContainer, parent.firstChild);
+  }
 }
 
 
@@ -448,13 +480,14 @@ function sortColors(labels) {
 
 
 function renderTitle(label, fraction) {
-  // convert label to uppercase first characters
-  label = label.split(' ').map( (word) => {
-    return word[0].toUpperCase() + word.slice(1);
-  }).join(' ');
+  if (label) {
+    // convert label to uppercase first characters
+    label = label.split(' ').map( (word) => {
+      return word[0].toUpperCase() + word.slice(1);
+    }).join(' ');
+  }
 
-  // grab section 3 div (mondrian)
-  // let parent = document.getElementById('mondrian');
+  // Grab section 3 div (mondrian)
   let parent = document.getElementById('legend');
 
   // round fraction to 2 dec. and format as %
@@ -497,7 +530,6 @@ function renderTitle(label, fraction) {
     titleContainer.appendChild(percentage);
 
     // append div to parent
-    // parent.appendChild(titleContainer);
     parent.insertBefore(titleContainer, parent.firstChild);
     
   }
@@ -505,11 +537,20 @@ function renderTitle(label, fraction) {
 
 
 function removeTitle(){
-  // grab container div to delete
-  let container = document.getElementById('title-container');
+  // OLD: grab container div to delete
+  // let container = document.getElementById('title-container');
 
-  // delete
-  if (container) {
-    container.parentNode.removeChild(container);
+  // OLD: delete container element
+  // if (container) {
+  //   container.parentNode.removeChild(container);
+  // }
+
+  // replace innerHTML elements of <p id="title">   AND   <p id="percentage"> with line breaks
+  let title = document.getElementById('title');
+  let percentage = document.getElementById('percentage');
+  // if title exists, replace it
+  if (title) {
+    title.innerHTML = "<br>";
+    percentage.innerHTML = "<br>";
   }
 }
