@@ -28,9 +28,11 @@ h3 {
   font-family: 'Times New Roman', Times, serif;
 }
 
-#body, #nav-bar, #section-2, #section-3, #footer {
+
+body {
   min-width: 780px;
 }
+
 
 // For Sticky Footer
 #app {
@@ -39,6 +41,7 @@ h3 {
 
 html, body {
   height: 100%;
+  width: 100%;
 }
 
 body {

@@ -2,7 +2,7 @@
   // padding: 1em 0 1em 0 ;
   // height: 100px;
   flex-shrink: 0;
-  
+
   background-color: #4686a0;
   color: rgba(255, 255, 255, 0.75);
   text-align: center;
@@ -42,5 +42,18 @@
         color: white;
       }
     }
+  }
+}
+
+@media only screen 
+and (min-device-width : 375px) 
+and (max-device-width : 667px) 
+and (orientation : portrait) { 
+  .push {
+    height: 18rem;
+  }
+  
+  #footer {
+    width: 100%;
   }
 }
