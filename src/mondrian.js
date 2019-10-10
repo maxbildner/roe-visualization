@@ -272,7 +272,7 @@ function renderLegend(ratios, labels) {
   let leverage = "<b>Leverage</b> (aka Equity Multiplier ratio) quantifies how much a company's assets are fiananced by equity. It's calculated by dividing a firm's total asset value by total net equity."; // The higher the ratio, the more a firm is funded by debt."; 
   // leverage:  https://www.investopedia.com/terms/e/equitymultiplier.asp
 
-  let assetTurnover = "<b>Asset Turnover</b> measures how efficient a firm is at using its assets to generate revenue. It's calculated by dividing Sales/Revenue";
+  let assetTurnover = "<b>Asset Turnover</b> measures how efficient a firm is at using its assets to generate revenue. It's calculated by dividing Sales/Assets";
   // assetTurnover: https://www.investopedia.com/terms/a/assetturnover.asp
 
   let taxBurden = "A high <b>Tax Burden</b> means that a company is keeping more of its pretax income, which will result in a higher ROE and vice versa. It's calculated by dividing Net Income/Earnings Before Taxes";
