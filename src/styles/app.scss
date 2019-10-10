@@ -22,7 +22,6 @@ html, body, div, h1, h2, h3, p, a, ul, li {
     font-size: 100%;
 }
 
-
 h3 {
   color: darkblue;
   font-size: 1.9rem;
@@ -33,5 +32,18 @@ h3 {
   min-width: 780px;
 }
 
+// For Sticky Footer
+#app {
+  flex: 1 0 auto;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
 
 
