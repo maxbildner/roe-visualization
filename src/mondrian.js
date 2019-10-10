@@ -125,14 +125,14 @@ export function renderMondrian(data) {
     
 
     // FROM http://bl.ocks.org/biovisualize/1016860
-    // Append div element (tooltip) to body
-    let tooltip = d3.select(`body`)
-      .append("div")
-      .style("position", "absolute")
-      .style("z-index", "10")
-      .style("visibility", "hidden")
-      .text(labels[i])
-      .attr("class", "tooltip")
+    // Append div element (tooltip) to body                                     // REMOVED Tooltip that tracks mouse on hover
+    // let tooltip = d3.select(`body`)
+    //   .append("div")
+    //   .style("position", "absolute")
+    //   .style("z-index", "10")
+    //   .style("visibility", "hidden")
+    //   .text(labels[i])
+    //   .attr("class", "tooltip")
     
     // capture the label at the current iteration
     let labelText = labels[i];
@@ -148,16 +148,16 @@ export function renderMondrian(data) {
       .attr("stroke", "black")
       // .attr("id", cssLabels[i])
       .attr("class", "rectangle")
-      // .on("mouseover", function () {                         // REMOVED Tooltip that tracks mouse on hover
-      //   // Render Dynamic Title (fixed tooltip component)
-      //   renderTitle(labelText, fractions[i]);
-      //   return tooltip.style("visibility", "visible");
-      // })
-      // .on("mousemove", function () { return tooltip.style("top", (event.pageY - 10) + "px").style("left", (event.pageX + 10) + "px"); })
-      // .on("mouseout", function () { 
-      //   removeTitle();
-      //   return tooltip.style("visibility", "hidden"); 
-      // });
+      .on("mouseover", function () {                         
+        // Render Dynamic Title (fixed tooltip component)
+        renderTitle(labelText, fractions[i]);
+        // return tooltip.style("visibility", "visible");                       // REMOVED Tooltip that tracks mouse on hover
+      })
+      // .on("mousemove", function () { return tooltip.style("top", (event.pageY - 10) + "px").style("left", (event.pageX + 10) + "px"); })     // REMOVED Tooltip that tracks mouse on hover
+      .on("mouseout", function () { 
+        removeTitle();
+        // return tooltip.style("visibility", "hidden");                        // REMOVED Tooltip that tracks mouse on hover
+      });
   }
 
   // Render legend
@@ -446,71 +446,70 @@ function sortColors(labels) {
 
 
 
-// !!! REMOVED Tooltip that tracks mouse on hover
-// function renderTitle(label, fraction) {
-//   // convert label to uppercase first characters
-//   label = label.split(' ').map( (word) => {
-//     return word[0].toUpperCase() + word.slice(1);
-//   }).join(' ');
 
-//   // grab section 3 div (mondrian)
-//   // let parent = document.getElementById('mondrian');
-//   let parent = document.getElementById('legend');
+function renderTitle(label, fraction) {
+  // convert label to uppercase first characters
+  label = label.split(' ').map( (word) => {
+    return word[0].toUpperCase() + word.slice(1);
+  }).join(' ');
 
-//   // round fraction to 2 dec. and format as %
-//   fraction = fraction.toFixed(2) * 100;
-//   // add % to fraction
-//   fraction = fraction + "%";
+  // grab section 3 div (mondrian)
+  // let parent = document.getElementById('mondrian');
+  let parent = document.getElementById('legend');
 
-//   let container = document.getElementById('title-container');
+  // round fraction to 2 dec. and format as %
+  fraction = fraction.toFixed(2) * 100;
+  // add % to fraction
+  fraction = fraction + "%";
 
-//   // if title-container div already exists then delete it
-//   if (container) {
-//     // delete it
-//     parent.removeChild(container);
-//     createTitleContainer();
-//   } else {
-//     createTitleContainer();
-//   }
+  let container = document.getElementById('title-container');
 
-//   function createTitleContainer() {
-//     // create div to append to parent
-//     let titleContainer = document.createElement('div');
-//     titleContainer.setAttribute('id', 'title-container');
+  // if title-container div already exists then delete it
+  if (container) {
+    // delete it
+    parent.removeChild(container);
+    createTitleContainer();
+  } else {
+    createTitleContainer();
+  }
 
-//     // create p element to append to title container
-//     let title = document.createElement('p');
-//     title.setAttribute('id', 'title')
+  function createTitleContainer() {
+    // create div to append to parent
+    let titleContainer = document.createElement('div');
+    titleContainer.setAttribute('id', 'title-container');
 
-//     // create percentage to go underneath title (append to title container)
-//     let percentage = document.createElement('p');
-//     percentage.setAttribute('id', 'percentage');
+    // create p element to append to title container
+    let title = document.createElement('p');
+    title.setAttribute('id', 'title')
 
-//     // give title some text
-//     title.innerHTML = label;
+    // create percentage to go underneath title (append to title container)
+    let percentage = document.createElement('p');
+    percentage.setAttribute('id', 'percentage');
 
-//     // give percentage some text
-//     percentage.innerHTML = fraction;
+    // give title some text
+    title.innerHTML = label;
 
-//     // append title and percentage p elements to parent (in order)
-//     titleContainer.appendChild(title);
-//     titleContainer.appendChild(percentage);
+    // give percentage some text
+    percentage.innerHTML = fraction;
 
-//     // append div to parent
-//     // parent.appendChild(titleContainer);
-//     parent.insertBefore(titleContainer, parent.firstChild);
+    // append title and percentage p elements to parent (in order)
+    titleContainer.appendChild(title);
+    titleContainer.appendChild(percentage);
+
+    // append div to parent
+    // parent.appendChild(titleContainer);
+    parent.insertBefore(titleContainer, parent.firstChild);
     
-//   }
-// }
+  }
+}
 
 
-// REMOVED Tooltip that tracks mouse on hover
-// function removeTitle(){
-//   // grab container div to delete
-//   let container = document.getElementById('title-container');
+function removeTitle(){
+  // grab container div to delete
+  let container = document.getElementById('title-container');
 
-//   // delete
-//   if (container) {
-//     container.parentNode.removeChild(container);
-//   }
-// }
+  // delete
+  if (container) {
+    container.parentNode.removeChild(container);
+  }
+}
