@@ -148,17 +148,16 @@ export function renderMondrian(data) {
       .attr("stroke", "black")
       // .attr("id", cssLabels[i])
       .attr("class", "rectangle")
-      // .on("mouseover", function () { return tooltip.style("visibility", "visible"); })   // OLD
-      .on("mouseover", function () { 
-        // Render Dynamic Title (fixed tooltip component)
-        renderTitle(labelText, fractions[i]);
-        return tooltip.style("visibility", "visible");
-      })
-      .on("mousemove", function () { return tooltip.style("top", (event.pageY - 10) + "px").style("left", (event.pageX + 10) + "px"); })
-      .on("mouseout", function () { 
-        removeTitle();
-        return tooltip.style("visibility", "hidden"); 
-      });
+      // .on("mouseover", function () {                         // REMOVED Tooltip that tracks mouse on hover
+      //   // Render Dynamic Title (fixed tooltip component)
+      //   renderTitle(labelText, fractions[i]);
+      //   return tooltip.style("visibility", "visible");
+      // })
+      // .on("mousemove", function () { return tooltip.style("top", (event.pageY - 10) + "px").style("left", (event.pageX + 10) + "px"); })
+      // .on("mouseout", function () { 
+      //   removeTitle();
+      //   return tooltip.style("visibility", "hidden"); 
+      // });
   }
 
   // Render legend
@@ -447,70 +446,71 @@ function sortColors(labels) {
 
 
 
+// !!! REMOVED Tooltip that tracks mouse on hover
+// function renderTitle(label, fraction) {
+//   // convert label to uppercase first characters
+//   label = label.split(' ').map( (word) => {
+//     return word[0].toUpperCase() + word.slice(1);
+//   }).join(' ');
 
-function renderTitle(label, fraction) {
-  // convert label to uppercase first characters
-  label = label.split(' ').map( (word) => {
-    return word[0].toUpperCase() + word.slice(1);
-  }).join(' ');
+//   // grab section 3 div (mondrian)
+//   // let parent = document.getElementById('mondrian');
+//   let parent = document.getElementById('legend');
 
-  // grab section 3 div (mondrian)
-  // let parent = document.getElementById('mondrian');
-  let parent = document.getElementById('legend');
+//   // round fraction to 2 dec. and format as %
+//   fraction = fraction.toFixed(2) * 100;
+//   // add % to fraction
+//   fraction = fraction + "%";
 
-  // round fraction to 2 dec. and format as %
-  fraction = fraction.toFixed(2) * 100;
-  // add % to fraction
-  fraction = fraction + "%";
+//   let container = document.getElementById('title-container');
 
-  let container = document.getElementById('title-container');
+//   // if title-container div already exists then delete it
+//   if (container) {
+//     // delete it
+//     parent.removeChild(container);
+//     createTitleContainer();
+//   } else {
+//     createTitleContainer();
+//   }
 
-  // if title-container div already exists then delete it
-  if (container) {
-    // delete it
-    parent.removeChild(container);
-    createTitleContainer();
-  } else {
-    createTitleContainer();
-  }
+//   function createTitleContainer() {
+//     // create div to append to parent
+//     let titleContainer = document.createElement('div');
+//     titleContainer.setAttribute('id', 'title-container');
 
-  function createTitleContainer() {
-    // create div to append to parent
-    let titleContainer = document.createElement('div');
-    titleContainer.setAttribute('id', 'title-container');
+//     // create p element to append to title container
+//     let title = document.createElement('p');
+//     title.setAttribute('id', 'title')
 
-    // create p element to append to title container
-    let title = document.createElement('p');
-    title.setAttribute('id', 'title')
+//     // create percentage to go underneath title (append to title container)
+//     let percentage = document.createElement('p');
+//     percentage.setAttribute('id', 'percentage');
 
-    // create percentage to go underneath title (append to title container)
-    let percentage = document.createElement('p');
-    percentage.setAttribute('id', 'percentage');
+//     // give title some text
+//     title.innerHTML = label;
 
-    // give title some text
-    title.innerHTML = label;
+//     // give percentage some text
+//     percentage.innerHTML = fraction;
 
-    // give percentage some text
-    percentage.innerHTML = fraction;
+//     // append title and percentage p elements to parent (in order)
+//     titleContainer.appendChild(title);
+//     titleContainer.appendChild(percentage);
 
-    // append title and percentage p elements to parent (in order)
-    titleContainer.appendChild(title);
-    titleContainer.appendChild(percentage);
-
-    // append div to parent
-    // parent.appendChild(titleContainer);
-    parent.insertBefore(titleContainer, parent.firstChild);
+//     // append div to parent
+//     // parent.appendChild(titleContainer);
+//     parent.insertBefore(titleContainer, parent.firstChild);
     
-  }
-}
+//   }
+// }
 
 
-function removeTitle(){
-  // grab container div to delete
-  let container = document.getElementById('title-container');
+// REMOVED Tooltip that tracks mouse on hover
+// function removeTitle(){
+//   // grab container div to delete
+//   let container = document.getElementById('title-container');
 
-  // delete
-  if (container) {
-    container.parentNode.removeChild(container);
-  }
-}
+//   // delete
+//   if (container) {
+//     container.parentNode.removeChild(container);
+//   }
+// }
